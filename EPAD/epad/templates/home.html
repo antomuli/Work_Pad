@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="parallax">
+    <!-- {% include 'navbar.html' %} -->
+    <div class=" jumbotron par-content"
+        style="text-align: center; background-color: transparent !important; padding-top: 10%; ">
+        <h1 style="text-transform: uppercase;">
+            <u>Effort <br> yields performance </u>
+        </h1>
+    </div>
+</div>
+<div class=" container div2">
+    <div id="about">
+        <h5><u>About EPAD</u></h5>
+        <h3>
+            EPAD is an online employee performance and appraisal tool that enables you
+            to evaluate and rate employee performances.Managers can also assign tasks to employees from the dashboard.
+            Employees can see their performance and update progress on their assined tasks.
+        </h3>
+        <h3>We have the following modules:</h3>
+        <div class="kalink" style="height: 50vh;">
+            {% include 'abouts.html' %}
+        </div>
+    </div>
+</div>
+<div class="parallax2"></div>
+<style>
+    * {
+        font-family: Merienda;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    .parallax {
+        background-image: url("https://images.unsplash.com/photo-1542089363-bba089ffaa25?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+        height: 80vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .div2 {
+        padding-top: 100px;
+    }
+
+    .parallax2 {
+        background-image: url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+        height: 40vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+</style>
+{% endblock %}

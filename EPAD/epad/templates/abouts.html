@@ -1,0 +1,89 @@
+<div class="div6">
+    <section class="stage" style="align-content: center;">
+        <div id="home" class="div">
+            <a href=" {% url 'home' %} ">
+                <li id="homep" class="p">Home</li>
+            </a>
+        </div>
+        <div class="div" id="about">
+            <a href=" {% url 'profile' %} ">
+                <li class="p">Profile</li>
+            </a>
+        </div>
+        <div class="div" id="contact">
+            <a href=" {% url 'system_users' %} ">
+                <li class="p">Dashboard</li>
+            </a>
+        </div>
+        <div class="div" id="gallery">
+            <li class="p">Contact</li>
+        </div>
+    </section>
+</div>
+<style>
+    .div6 {
+        background-image: url("https://atlona.com/wp-content/uploads/2016/02/executive_conference_space_solution_image.jpg");
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Merienda;
+    }
+
+    .stage {
+        margin-top: 5%;
+        height: 350px;
+        width: 150px;
+        margin-left: 40%;
+        margin-right: auto;
+        float: left;
+        margin-right: 8px;
+        background-image: url("https://atlona.com/wp-content/uploads/2016/02/executive_conference_space_solution_image.jpg");
+    }
+
+    .p {
+        font-size: 35px;
+        text-align: center;
+        margin-top: 0;
+        cursor: progress;
+        width: 100%;
+        background: #78FED6;
+        border-radius: 10px;
+        font-family: Century Gothic;
+        letter-spacing: 5px;
+    }
+
+    .div {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
+        width: 200px;
+        height: 50px;
+        margin-top: 10%;
+        transition-duration: 0.2s;
+    }
+
+    .p:hover {
+        background: white;
+        color: black;
+    }
+
+    .div:nth-child(odd) {
+        transform: perspective(300px) rotateY(45deg);
+        box-shadow: -2px 2px 7px gray;
+    }
+
+    .div:nth-child(even) {
+        transform: perspective(300px) rotateY(-45deg);
+        box-shadow: 2px 2px 7px gray;
+    }
+
+    .div:hover {
+        transform: rotateY(0);
+        background: white;
+        color: black;
+        box-shadow: 0px 0px 0px;
+    }
+</style>

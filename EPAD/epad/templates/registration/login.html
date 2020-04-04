@@ -1,0 +1,66 @@
+<link href="https//fonts.googleapis.com/css?family=Courgette|Lato&display=swap" rel="stylesheet">
+{% extends "registration/base.html %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="begin">
+    <div class="jumbotron caption">
+        <h1>E_PAD</h1>
+        <h3>Effort yields performance</h3>
+    </div> 
+<div id="login">
+    <div class="container">
+        <div class="row">
+            <!-- Empty div -->
+            <div class="col-md-1"></div>
+                <div class="col-md-4">
+                   <!-- <img width="500px" class="img-fluid" src="https://images.pexels.com/photos/1212053/pexels-photo-1212053.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="login pic">  -->
+                
+            </div>
+            <div class="col-md-4">
+                {% if form.errors %}
+                <p>Password or username entered is invalid</p>
+                {% endif %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="text-center">Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="/accounts/login" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                        </div>
+                        <input type="hidden" name="text" value="{{next}}">
+                        </form>
+                        <p>Don't have an account?<a class="btn btn-primary" href="/accounts/register/">Sign Up</a></p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Empty div-->
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    #login{
+        margin-top: 5%;
+        border:goldenrod;
+    }
+    .caption{
+        font-family:'Courgette', cursive;
+        background-color:transparent !important;
+        text-align:center;
+    }
+    .begin{
+        background-image: url('https://images.unsplash.com/photo-1507325670434-aa8a9a9626c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMD9&auto=format&fit=crop&w=1213&q=80');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+    }
+</style>
+{% endblock %}

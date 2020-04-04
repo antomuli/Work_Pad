@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="section" style="text-align: center; ">
+    {% include 'navbar.html' %}
+    <div class="words" style="padding-top: 8%; color:black; font-weight: 600;">
+        <h1>~~E~PAD</h1>
+    </div>
+</div>
+<div id="div2">
+    <div class="gap"></div>
+    <div class="container">
+        <div class=" card flex-row flex-wrap "
+            style=" width: 700px; padding:40px; background-color: transparent; margin-top: 90px; ">
+            <div class="card-header border-0">
+                {% if user.profile.profile_pic %}
+                <img height="350px" src=" {{user.profile_pic.url}} " alt="Profile picture">
+                {% else %}
+                <div class="wrap">
+                    <img width="300px" height="300px"
+                        src="https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                        alt="Asshat" id="lady-img" class="image">
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-block px-2 text-center">
+                <h4 class="card-header" style="padding-top: 30px;">{{user.username}}'s Profile</h4>
+                <div class="card-body">
+                    <p class="card-text">Email: {{user.email}}</p>
+                    <p class="card-text">Full names: {{profile.first_name}} , {{user.last_name}} </a></p>
+                    <h5 class="card-title">Your overall score is {{overall}}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> Work_quality : {{work_quality}}%</li>
+                        <li class="list-group-item"> Attendance : {{attendance}}%</li>
+                        <li class="list-group-item">Soft-Skills : {{soft_skills}}%</li>
+                        <li class="list-group-item">Punctuality : {{punctuality}}%</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="w-100"></div> -->
+            <div class="card-footer w-100 text-muted">
+                Contact admin for any issues.
+            </div>
+        </div>
+        <br><br>
+        <h2 style="text-align: center; text-transform: capitalize;"><u> {{user.username}}'s tasks </u></h2>
+        <div id="myDiv" style="padding-bottom: 50px;">
+            {% for task in my_tasks %}
+            <div class="card text-center " style="width: 700px; background-color: transparent; margin-top: 40px; ">
+                <div class="card-header">
+                    <h2> {{task.title}} </h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"> {{task.task}} </p>
+                    <p>Task assigned on: {{task.added_on}} </p>
+                    <p>Task assigned to you and {{task.assigned_to.count}} others </p>
+                    <!-- <a href="#" class="btn btn-primary">Update Progress</a> -->
+                </div>
+                <div class="card-footer text-muted">
+                    <p>Task due on: {{task.due_date}} </p>
+                </div>
+            </div>
+            {% empty %}
+            <p>Looks like you have no tasks at the moment</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="section2">
+</div>
+<style>
+    * {
+        font-family: Merienda;
+    }
+
+    /* .jumbotron{
+background-image: url("https://images.pexels.com/photos/273238/pexels-photo-273238.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+} */
+    .section {
+        background-image: url("https://hunts.imgix.net/https%3A%2F%2Fwww.huntsoffice.co.uk%2Fmedia%2Fcasestudies%2Fhunts-office-inland-homes-beaconsfield-workspace-case-study%2FInland-Homes-Hunts-Office-Sikora-Photography-Small-8.jpg?auto=compress%2Cformat&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=933&q=85&w=1400&s=58639cf5b258188ca1a628185c0ad679");
+        height: 40vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0px;
+    }
+
+    #div2 {
+        background-image: url("https://www.xmple.com/wallpaper/gradient-blue-white-linear-1920x1080-c2-ffffff-add8e6-a-90-f-14.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .section2 {
+        background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+        height: 30vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 0px;
+    }
+
+    /* #lady-img {
+transform: translate(0%, -50%);
+height: 200px;
+border-radius: 50%;
+position: absolute;
+left: 42%;
+top: 60%;
+margin-bottom: 20%;
+} */
+    #user-info {
+        margin-top: 8%;
+    }
+
+    @media only screen and (max-width: 415px) {
+        #lady-img {
+            left: 30%;
+        }
+
+        #user-info {
+            margin-top: 30%;
+        }
+    }
+</style>
+{% endblock %}
