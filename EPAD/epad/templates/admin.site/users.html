@@ -1,0 +1,193 @@
+{% extends 'admin_site/base.html' %}
+{% block content %}
+
+<body style="background-color: white;">
+    <div class="container-fluid">
+        <div class="parallax">
+            <div class="par-text">
+                <h1>Welcome to the Admin side!!</h1>
+                <h5> Please mind your steps here </h5>
+            </div>
+        </div>
+        <h1 style="text-align: center;"> <u> Admin Dashboard</u></h1>
+        <div class="row" style="padding: 100px;padding-top: 5px;">
+            {% include 'admin_site/more/sidebar.html' %}
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="chartjs-size-monitor"
+                    style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                    <div class="chartjs-size-monitor-expand"
+                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink"
+                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                    </div>
+                </div>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h3">Registered Users</h1>
+                </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <p class="bg-success" {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Last login</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Rate User</th>
+                            <th scope="col">Date joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.last_login }}</td>
+                            <td>
+                                {% if user.is_active %}
+                                <a href="{% url 'deactivate_user' user.id %}"
+                                    class="btn btn-sm btn-danger">Deactivate</a>
+                                {% else %}
+                                <a href="{% url 'activate_user' user_id=user.id %}"
+                                    class="btn btn-sm btn-success">Activate</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" data-toggle="modal" data-target="#myModal">
+                                    <a class=" btn btn-sm btn-primary" href="#myModal"> Rate {{user.username}}
+                                    </a></button>
+                                <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-title">
+                                                <h4>RATE USER</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action=" {% url 'rates' user.id %} " method="POST"
+                                                    enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <h2>Work quality</h2>
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="1">1
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="2">2
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="3">3
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="4">4
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="5">5
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="6">6
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="7">7
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="8">8
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="9">9
+                                                    <input type="radio" name="work_quality" id="work_quality"
+                                                        value="10">10 <br>
+                                                    <h2>Attendance</h2>
+                                                    <input type="radio" name="attendance" id="work_quality" value="1">1
+                                                    <input type="radio" name="attendance" id="work_quality" value="2">2
+                                                    <input type="radio" name="attendance" id="work_quality" value="3">3
+                                                    <input type="radio" name="attendance" id="work_quality" value="4">4
+                                                    <input type="radio" name="attendance" id="work_quality" value="5">5
+                                                    <input type="radio" name="attendance" id="work_quality" value="6">6
+                                                    <input type="radio" name="attendance" id="work_quality" value="7">7
+                                                    <input type="radio" name="attendance" id="work_quality" value="8">8
+                                                    <input type="radio" name="attendance" id="work_quality" value="9">9
+                                                    <input type="radio" name="attendance" id="work_quality"
+                                                        value="10">10 <br>
+                                                    <h2>Punctuality</h2>
+                                                    <input type="radio" name="punctuality" id="work_quality" value="1">1
+                                                    <input type="radio" name="punctuality" id="work_quality" value="2">2
+                                                    <input type="radio" name="punctuality" id="work_quality" value="3">3
+                                                    <input type="radio" name="punctuality" id="work_quality" value="4">4
+                                                    <input type="radio" name="punctuality" id="work_quality" value="5">5
+                                                    <input type="radio" name="punctuality" id="work_quality" value="6">6
+                                                    <input type="radio" name="punctuality" id="work_quality" value="7">7
+                                                    <input type="radio" name="punctuality" id="work_quality" value="8">8
+                                                    <input type="radio" name="punctuality" id="work_quality" value="9">9
+                                                    <input type="radio" name="punctuality" id="work_quality"
+                                                        value="10">10 <br>
+                                                    <h2>Soft skills</h2>
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="1">1
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="2">2
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="3">3
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="4">4
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="5">5
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="6">6
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="7">7
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="8">8
+                                                    <input type="radio" name="soft_skills" id="work_quality" value="9">9
+                                                    <input type="radio" name="soft_skills" id="work_quality"
+                                                        value="10">10 <br>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" class="btn-success" style="margin-left: 30%;"
+                                                    value="Rate">
+                                                {% for message in messages %}
+                                                <h2> {{message}} </h2>
+                                                {% endfor %}
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Close</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ user.date_joined }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+        <div class="parallax2">
+        </div>
+    </div>
+</body>
+<style>
+    .parallax {
+        background-image: url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+        height: 70vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    .par-text {
+        text-align: center;
+        padding-top: 10%;
+        color: white;
+    }
+
+    table {
+        margin-bottom: 100px;
+    }
+
+    .parallax2 {
+        background-image: url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+        height: 50vh;
+        top: 0%;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 5%;
+    }
+</style>
+{% endblock %}
