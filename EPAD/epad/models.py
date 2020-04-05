@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class profile(models.Model):
@@ -7,7 +8,7 @@ class profile(models.Model):
     Class to define employee
     '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='pictures/',blank=True)
+    profile_pic = CloudinaryField('/')
     first_name=models.CharField(max_length=500,blank=True)
     last_name=models.CharField(max_length=500,blank=True)
     position=models.CharField(max_length=500,blank=True)
