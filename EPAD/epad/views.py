@@ -17,6 +17,8 @@ def home(request):
     '''
     # user=request.User()
     return render(request,'home.html',)
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
 def registered_users(request):
@@ -25,6 +27,8 @@ def registered_users(request):
     'users':users,
     }
     return render(request,'admin_site/users.html',context)
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
 def user_deactivate(request,id):
@@ -33,6 +37,8 @@ def user_deactivate(request,id):
     user.save()
     messages.success(request,f"{user.firstname}'s account has been deactivated'")
     return redirect('system_users')
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
 def user_activate(request,user_id):
@@ -41,13 +47,17 @@ def user_activate(request,user_id):
     user.save()
     messages.success(request,f"{user.firstname}'s account is now activated'")
     return redirect('system_users')
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
 def dashboard(request):
     return render(request,'admin_site/dashboard.html')
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
-    def assign_task(request):
+def assign_task(request):
     if request.method=='POST':
         form = assignTaskForm(request.POST,request.FILES)
         if form.is_valid():
@@ -58,6 +68,9 @@ def dashboard(request):
         else:
             form=assignTaskForm()
         return render(request,'admin_site/assign_task.html',{'form':form})
+
+
+
 @login_required(login_url = '/accounts/login/')
 @permission_required("True","home")
 def rate(request,id):
@@ -82,6 +95,8 @@ def rate(request,id):
         form=rateEmployeeForm()
         messages.info(request,'Make sure all fields are filled')
         return redirect('system_users')
+
+
 @login_required(login_url = '/accounts/login/')
 def profile(request):
     my_tasks = tasks.objects.filter(assigned_to = request.user)
@@ -110,6 +125,8 @@ def profile(request):
         punctuality = 0
         soft_skills = 0
         return render(request,'profile.html',{'my_tasks':my_tasks,'work_quality':work_quality,'attendance':attendance,'punctuality':punctuality,'soft_skills':soft_skills})
+
+
 @login_required(login_url="/accounts/login/")
 def logout_request(request):
     '''
