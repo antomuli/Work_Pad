@@ -8,7 +8,7 @@ class profile(models.Model):
     Class to define employee
     '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic = CloudinaryField('/')
+    profile_pic = CloudinaryField('images')
     first_name=models.CharField(max_length=500,blank=True)
     last_name=models.CharField(max_length=500,blank=True)
     position=models.CharField(max_length=500,blank=True)
