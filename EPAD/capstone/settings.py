@@ -14,6 +14,7 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,7 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'epad.apps.EpadConfig',
     'bootstrap4',
+    'cloudinary',
 ]
+#Add app
+cloudinary.config(
+    cloud_name = 'antomuli',
+    api_key = '444986676449757',
+    api_secret = 'tBwWdtSJzNIU4ujIxGQ9JQ3kZP8',  
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,10 +129,20 @@ USE_TZ = True
 
 BASE_DIR  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATICFILES_STORAGE = 'whitenoise.storage.CompreeedManifestStaticFilesStorage'
+
 STATIC_URL = '/static/'
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 LOGIN_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
